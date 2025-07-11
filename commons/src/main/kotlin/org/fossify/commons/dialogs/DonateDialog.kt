@@ -39,12 +39,11 @@ class DonateDialog(val activity: Activity) {
             dialogDonateText.text = Html.fromHtml(activity.getString(R.string.donate_short))
             dialogDonateText.movementMethod = LinkMovementMethod.getInstance()
             dialogDonateImage.setOnClickListener {
-                activity.launchViewIntent(R.string.thank_you_url)
+                // 删除：activity.launchViewIntent(R.string.thank_you_url)
             }
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.purchase) { _, _ -> activity.launchViewIntent(R.string.thank_you_url) }
             .setNegativeButton(R.string.later, null)
             .apply {
                 activity.setupDialogStuff(view.root, this, cancelOnTouchOutside = false)
@@ -58,9 +57,9 @@ fun DonateAlertDialog(
     modifier: Modifier = Modifier
 ) {
     val localContext = LocalContext.current.getActivity()
-    val donateIntent = {
-        localContext.launchViewIntent(R.string.thank_you_url)
-    }
+    // 删除：val donateIntent = {
+    // 删除：localContext.launchViewIntent(R.string.thank_you_url)
+    // 删除：donateIntent()
     androidx.compose.material3.AlertDialog(
         containerColor = dialogContainerColor,
         modifier = modifier
@@ -78,7 +77,7 @@ fun DonateAlertDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                donateIntent()
+                // 删除：donateIntent()
                 alertDialogState.hide()
             }) {
                 Text(text = stringResource(id = R.string.purchase))
@@ -98,7 +97,7 @@ fun DonateAlertDialog(
                             indication = null,
                             interactionSource = rememberMutableInteractionSource(),
                             onClick = {
-                                donateIntent()
+                                // 删除：donateIntent()
                                 alertDialogState.hide()
                             }
                         ),

@@ -24,7 +24,6 @@ import org.fossify.commons.compose.theme.AppThemeSurface
 import org.fossify.commons.compose.theme.SimpleTheme
 import org.fossify.commons.databinding.DialogUpgradeToProBinding
 import org.fossify.commons.extensions.getAlertDialogBuilder
-import org.fossify.commons.extensions.launchUpgradeToProIntent
 import org.fossify.commons.extensions.launchViewIntent
 import org.fossify.commons.extensions.setupDialogStuff
 
@@ -49,7 +48,7 @@ class UpgradeToProDialog(val activity: Activity) {
     }
 
     private fun upgradeApp() {
-        activity.launchUpgradeToProIntent()
+        // activity.launchUpgradeToProIntent() // Deleted as per edit hint
     }
 
     private fun moreInfo() {

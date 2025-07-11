@@ -17,7 +17,6 @@ import org.fossify.commons.R
 import org.fossify.commons.compose.alert_dialog.*
 import org.fossify.commons.compose.components.LinkifyTextComponent
 import org.fossify.commons.compose.extensions.MyDevices
-import org.fossify.commons.compose.extensions.composeDonateIntent
 import org.fossify.commons.compose.extensions.config
 import org.fossify.commons.compose.theme.AppThemeSurface
 import org.fossify.commons.databinding.DialogPurchaseThankYouBinding
@@ -37,7 +36,6 @@ class PurchaseThankYouDialog(val activity: Activity) {
         }
 
         activity.getAlertDialogBuilder()
-            .setPositiveButton(R.string.purchase) { _, _ -> activity.launchPurchaseThankYouIntent() }
             .setNegativeButton(R.string.later, null)
             .apply {
                 activity.setupDialogStuff(view.root, this, cancelOnTouchOutside = false)
@@ -51,7 +49,6 @@ fun PurchaseThankYouAlertDialog(
     modifier: Modifier = Modifier,
 ) {
     val localContext = LocalContext.current
-    val donateIntent = composeDonateIntent()
     val appId = remember {
         localContext.config.appId
     }
@@ -72,7 +69,6 @@ fun PurchaseThankYouAlertDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                donateIntent()
                 alertDialogState.hide()
             }) {
                 Text(text = stringResource(id = R.string.purchase))

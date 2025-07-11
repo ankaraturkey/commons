@@ -25,7 +25,6 @@ import org.fossify.commons.R
 import org.fossify.commons.compose.alert_dialog.*
 import org.fossify.commons.compose.components.LinkifyTextComponent
 import org.fossify.commons.compose.extensions.MyDevices
-import org.fossify.commons.compose.extensions.composeDonateIntent
 import org.fossify.commons.compose.extensions.rememberMutableInteractionSource
 import org.fossify.commons.compose.theme.AppThemeSurface
 import org.fossify.commons.compose.theme.SimpleTheme
@@ -50,7 +49,7 @@ class FeatureLockedDialog(val activity: Activity, val callback: () -> Unit) {
                     view.featureLockedDescription.movementMethod = LinkMovementMethod.getInstance()
 
                     alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-                        activity.launchPurchaseThankYouIntent()
+                        // 删除：activity.launchPurchaseThankYouIntent()
                     }
                 }
             }
@@ -68,7 +67,7 @@ fun FeatureLockedAlertDialog(
     modifier: Modifier = Modifier,
     cancelCallback: () -> Unit
 ) {
-    val donateIntent = composeDonateIntent()
+    // 删除：val donateIntent = composeDonateIntent()
     androidx.compose.material3.AlertDialog(
         containerColor = dialogContainerColor,
         modifier = modifier
@@ -87,7 +86,7 @@ fun FeatureLockedAlertDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                donateIntent()
+                // 删除：donateIntent()
             }) {
                 Text(text = stringResource(id = R.string.purchase))
             }
@@ -106,7 +105,7 @@ fun FeatureLockedAlertDialog(
                             indication = null,
                             interactionSource = rememberMutableInteractionSource(),
                             onClick = {
-                                donateIntent()
+                                // 删除：donateIntent()
                             }
                         ),
                     colorFilter = ColorFilter.tint(dialogTextColor)
