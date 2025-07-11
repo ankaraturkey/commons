@@ -48,10 +48,8 @@ import org.fossify.commons.dialogs.AppSideloadedDialog
 import org.fossify.commons.dialogs.ConfirmationAdvancedDialog
 import org.fossify.commons.dialogs.ConfirmationDialog
 import org.fossify.commons.dialogs.CustomIntervalPickerDialog
-import org.fossify.commons.dialogs.DonateDialog
 import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.dialogs.SecurityDialog
-import org.fossify.commons.dialogs.UpgradeToProDialog
 import org.fossify.commons.dialogs.WhatsNewDialog
 import org.fossify.commons.dialogs.WritePermissionDialog
 import org.fossify.commons.dialogs.WritePermissionDialog.WritePermissionDialogMode
@@ -125,20 +123,22 @@ fun Activity.appLaunched(appId: String) {
     }
 
     baseConfig.appRunCount++
-    if (baseConfig.appRunCount % 30 == 0 && !isAProApp()) {
-        if (!resources.getBoolean(R.bool.hide_google_relations)) {
-            showDonateOrUpgradeDialog()
-        }
-    }
+    // 删除升级和捐赠对话框调用
+    // if (baseConfig.appRunCount % 30 == 0 && !isAProApp()) {
+    //     if (!resources.getBoolean(R.bool.hide_google_relations)) {
+    //         showDonateOrUpgradeDialog()
+    //     }
+    // }
 }
 
-fun Activity.showDonateOrUpgradeDialog() {
-    if (getCanAppBeUpgraded()) {
-        UpgradeToProDialog(this)
-    } else if (!isOrWasThankYouInstalled()) {
-        DonateDialog(this)
-    }
-}
+// 删除升级和捐赠对话框函数
+// fun Activity.showDonateOrUpgradeDialog() {
+//     if (getCanAppBeUpgraded()) {
+//         UpgradeToProDialog(this)
+//     } else if (!isOrWasThankYouInstalled()) {
+//         DonateDialog(this)
+//     }
+// }
 
 fun Activity.isAppInstalledOnSDCard(): Boolean = try {
     val applicationInfo = packageManager.getPackageInfo(packageName, 0).applicationInfo
@@ -387,20 +387,6 @@ fun BaseSimpleActivity.showOTGPermissionDialog(path: String) {
                 }
             }
         }
-    }
-}
-
-fun Activity.launchPurchaseThankYouIntent() {
-    hideKeyboard()
-    launchViewIntent(getString(R.string.thank_you_url))
-}
-
-fun Activity.launchUpgradeToProIntent() {
-    hideKeyboard()
-    try {
-        launchViewIntent("market://details?id=${baseConfig.appId.removeSuffix(".debug")}.pro")
-    } catch (ignored: Exception) {
-        launchViewIntent(getStoreUrl())
     }
 }
 

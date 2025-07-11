@@ -3,8 +3,7 @@
     <string name="pro">Pro</string>
     <string name="fossify_commons">Fossify Commons</string>
     <string name="progress">%1$s / %2$s</string>
-    <string name="donate_url">https://fossify.org/donate</string>
-    <string name="thank_you_url">https://play.google.com/store/apps/details?id=org.fossify.thankyou</string>
+    <!-- 删除捐赠相关URL -->
     <string name="a_m">am</string>
     <string name="p_m">pm</string>
     <string name="material_you">Material You</string>
